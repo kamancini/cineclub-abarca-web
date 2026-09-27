@@ -1,0 +1,22 @@
+# Local Netlify folder
+.netlify
+# Local Netlify folder
+.netlify
+
+# Dependencias
+node_modules/
+
+# Archivos generados
+dist/
+
+# Estado local de Cloudflare/Wrangler
+.wrangler/
+
+# Variables y secretos locales
+.env
+.env.*
+.dev.vars
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db

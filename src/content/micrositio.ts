@@ -1,43 +1,30 @@
 /**
  * Contenidos editados del micrositio de Cineclub Abarca.
  *
- * Todo el texto visible del sitio vive en este archivo: está organizado en los
- * diez módulos que se publican, en el mismo orden en que aparecen en pantalla.
- * Para ajustar una frase, editarla aquí basta; no hay copia en los componentes.
- *
- * Fuente: "Documento base del micrositio" (Cineclub Abarca). Los textos fueron
- * organizados, sintetizados y jerarquizados para lectura en pantalla, sin
- * agregar datos que no estuvieran en el documento original.
+ * Los textos institucionales se mantienen centralizados aquí. Las funciones y
+ * publicaciones tienen sus propias fuentes de datos porque cambian con mayor frecuencia.
  */
 
 export const sitio = {
   nombre: 'Cineclub Abarca',
   sigla: 'cca',
+
   /** Módulo 1 — Portada */
-  titulo: 'Un espacio íntimo de encuentro en torno al cine',
-  /**
-   * La frase del documento base se reparte entre el H1 y esta bajada, para no
-   * repetirla dos veces en la misma pantalla:
-   * "Un espacio íntimo de encuentro en torno al cine, diseñado para compartir
-   * opiniones, sensibilidades y vivencias personales."
-   */
-  frase: 'Diseñado para compartir opiniones, sensibilidades y vivencias personales.',
-  entrada:
-    'Programamos ciclos temáticos con funciones guiadas en un entorno cercano, seguro y gratuito, para personas entre 18 y 65 años que quieran profundizar su experiencia cinematográfica y conversar con honestidad sobre los temas y emociones que el cine nos invita a explorar.',
-  personalidad: ['Acogedor', 'Creativo', 'Detallista'],
+  titulo:
+    'Un espacio íntimo de encuentro en torno al cine, diseñado para compartir opiniones, sensibilidades y vivencias personales.',
+  frase: '',
+  entrada: '',
   accionPrincipal: 'Inscribirme a una función',
   accionSecundaria: 'Seguir el proyecto',
 } as const
 
-/** Navegación interna del micrositio. */
+/** Navegación principal */
 export const navegacion = [
-  { id: 'que-hacemos', etiqueta: 'Qué hacemos' },
-  { id: 'proposito', etiqueta: 'Propósito' },
-  { id: 'origen', etiqueta: 'Origen' },
-  { id: 'equipo', etiqueta: 'Equipo' },
-  { id: 'publico', etiqueta: 'Para quién' },
-  { id: 'visitar', etiqueta: 'Dónde estamos' },
-  { id: 'inscripcion', etiqueta: 'Inscripción' },
+  { href: '/proyecto', etiqueta: 'El proyecto' },
+  { href: '/funciones', etiqueta: 'Funciones' },
+  { href: '/ensayos', etiqueta: 'Ensayos' },
+  { href: '/materiales', etiqueta: 'Materiales' },
+  { href: '/contacto', etiqueta: 'Contacto' },
 ] as const
 
 /** Módulo 2 — Qué hacemos */
@@ -81,7 +68,7 @@ export const proposito = {
   destacado: 'El cine como punto de partida para conectar con otros.',
 } as const
 
-/** Módulo 4 — Origen: la Casa Taller de Agustín Abarca */
+/** Módulo 4 — Casa Taller de Agustín Abarca */
 export const origen = {
   numero: '04',
   titulo: 'La Casa Taller de Agustín Abarca',
@@ -91,8 +78,14 @@ export const origen = {
     'Nos motiva la convicción de que el cine es una herramienta potente para la memoria territorial y el diálogo, transformando cada función en un espacio seguro para reflexionar sobre nuestras vidas, identidades y conexiones.',
   ],
   hitos: [
-    { dato: '2025', glosa: 'Año en que formalizamos la iniciativa' },
-    { dato: '6 años', glosa: 'De trabajo colaborativo del equipo' },
+    {
+      dato: '2025',
+      glosa: 'Año en que formalizamos la iniciativa',
+    },
+    {
+      dato: '1 año',
+      glosa: 'De trabajo colaborativo del equipo',
+    },
   ],
 } as const
 
@@ -100,20 +93,30 @@ export const origen = {
 export const equipo = {
   numero: '05',
   titulo: 'Quiénes somos',
-  bajada:
-    'Somos Rosa María Droguett Abarca y Cristóbal Ambroggio, co-fundadores del Cineclub Abarca.',
+  bajada: 'El equipo del Cineclub Abarca está integrado por:',
   personas: [
     {
       nombre: 'Rosa María Droguett Abarca',
-      rol: 'Académica de Estética UC',
+      cargo: 'cofundadora',
     },
     {
-      nombre: 'Cristóbal Ambroggio',
-      rol: 'Productor audiovisual',
+      nombre: 'Cristóbal Ocampo',
+      cargo: 'cofundador',
+    },
+    {
+      nombre: 'Karla Mancini',
+      cargo: 'community manager',
+    },
+    {
+      nombre: 'Vicente Rodríguez',
+      cargo: 'mediador Cineclub de Lectura',
+    },
+    {
+      nombre: 'Macarena Farías',
+      cargo: 'diseñadora',
     },
   ],
   parrafos: [
-    'Con seis años de trabajo colaborativo, nuestro equipo combina la investigación estética con la producción audiovisual para crear experiencias cercanas.',
     'En el Cineclub Abarca, más que espectadores, buscamos construir una comunidad; un lugar donde las películas actúan como un hilo conductor para conocernos, conversar y habitar juntos, con calma y sentido, un espacio de «sentipensamientos».',
   ],
 } as const
@@ -131,7 +134,12 @@ export const publico = {
   ],
 } as const
 
-/** Módulo 7 — Qué puedes hacer en este sitio */
+/**
+ * Contenido heredado del módulo 7 anterior.
+ *
+ * Se conserva para compatibilidad y posibles reutilizaciones,
+ * aunque el Home ahora usa ese espacio para funciones.
+ */
 export const acciones = {
   numero: '07',
   titulo: 'Qué puedes hacer en este sitio',
@@ -139,33 +147,56 @@ export const acciones = {
     {
       titulo: 'Conocer el proyecto',
       texto: 'Qué hacemos, por qué existe y quiénes lo sostienen.',
-      enlace: { href: '#que-hacemos', texto: 'Ver qué hacemos', interno: true },
+      enlace: {
+        href: '/proyecto',
+        texto: 'Ver el proyecto',
+        interno: true,
+      },
     },
     {
       titulo: 'Inscribirte en una función',
-      texto: 'Déjanos tus datos para participar en una de nuestras funciones.',
-      enlace: { href: '#inscripcion', texto: 'Ir al formulario', interno: true },
+      texto:
+        'Revisa la programación y elige una función con inscripciones abiertas.',
+      enlace: {
+        href: '/funciones',
+        texto: 'Ver funciones',
+        interno: true,
+      },
     },
     {
       titulo: 'Contactarnos',
       texto: 'Escríbenos por correo o por Instagram.',
-      enlace: { href: '#contacto', texto: 'Ver contacto', interno: true },
+      enlace: {
+        href: '/contacto',
+        texto: 'Ver contacto',
+        interno: true,
+      },
     },
     {
       titulo: 'Descargar material',
-      texto: 'Material del cineclub para descargar. En preparación.',
-      enlace: null,
+      texto: 'Material del cineclub para descargar.',
+      enlace: {
+        href: '/materiales',
+        texto: 'Ver materiales',
+        interno: true,
+      },
     },
   ],
 } as const
 
-/** Módulo 8 — Inscripción (acción principal) */
+/**
+ * Formulario genérico anterior.
+ *
+ * Se conserva para que el componente existente no pierda compatibilidad;
+ * las nuevas inscripciones viven en cada función.
+ */
 export const inscripcion = {
   numero: '08',
   titulo: 'Inscríbete a una función',
   bajada:
-    'Las funciones son gratuitas y ocurren en un espacio íntimo. Déjanos tus datos para inscribirte en una de nuestras funciones.',
-  nota: 'También puedes seguir el proyecto en Instagram para enterarte de cada ciclo.',
+    'Las funciones son gratuitas y ocurren en un espacio íntimo. Revisa la programación para inscribirte en la actividad que te interese.',
+  nota:
+    'También puedes seguir el proyecto en Instagram para enterarte de cada ciclo.',
   campos: {
     nombre: 'Nombre y apellido',
     correo: 'Correo electrónico',
@@ -190,12 +221,14 @@ export const visitar = {
     {
       calle: 'Hamburgo 36',
       comuna: 'Ñuñoa',
-      mapa: 'https://www.google.com/maps/search/?api=1&query=Hamburgo+36%2C+%C3%91u%C3%B1oa%2C+Santiago',
+      mapa:
+        'https://www.google.com/maps/search/?api=1&query=Hamburgo+36%2C+%C3%91u%C3%B1oa%2C+Santiago',
     },
     {
       calle: 'Tegualda 1871',
       comuna: 'Ñuñoa',
-      mapa: 'https://www.google.com/maps/search/?api=1&query=Tegualda+1871%2C+%C3%91u%C3%B1oa%2C+Santiago',
+      mapa:
+        'https://www.google.com/maps/search/?api=1&query=Tegualda+1871%2C+%C3%91u%C3%B1oa%2C+Santiago',
     },
   ],
 } as const
@@ -204,7 +237,8 @@ export const visitar = {
 export const contacto = {
   numero: '10',
   titulo: 'Contacto',
-  bajada: 'Escríbenos para preguntar, proponer una película o sumarte.',
+  bajada:
+    '¿Tienes preguntas? Escríbenos y te responderemos a la brevedad.',
   correo: 'cineclubabarca@gmail.com',
   instagram: {
     usuario: '@cineclubabarca',

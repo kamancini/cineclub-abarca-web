@@ -1,39 +1,32 @@
-/**
- * Construye URLs de la Netlify Image CDN para las fotografías del cineclub.
- * Los originales viven en `public/img` y nunca se sirven a tamaño completo.
- */
-type Opciones = {
-  w: number
+type ImageOptions = {
+  w?: number
   h?: number
   q?: number
-  fit?: 'cover' | 'contain'
+  fm?: string
 }
 
-export function img(archivo: string, { w, h, q = 74, fit = 'cover' }: Opciones) {
-  const params = new URLSearchParams({
-    url: `/img/${archivo}`,
-    w: String(w),
-    fm: 'webp',
-    q: String(q),
-  })
-  if (h) {
-    params.set('h', String(h))
-    params.set('fit', fit)
+function imagePath(file: string) {
+  if (file.startsWith('http://') || file.startsWith('https://')) {
+    return file
   }
-  return `/.netlify/images?${params.toString()}`
+
+  if (file.startsWith('/')) {
+    return file
+  }
+
+  return `/img/${file}`
 }
 
-/** Variantes de ancho para `srcset`, manteniendo la proporción del recorte. */
+export function img(file: string, _options: ImageOptions = {}) {
+  return imagePath(file)
+}
+
 export function srcSet(
-  archivo: string,
-  anchos: number[],
-  proporcion?: number,
-  q?: number,
+  file: string,
+  widths: number[],
+  _proportion?: number,
 ) {
-  return anchos
-    .map((w) => {
-      const h = proporcion ? Math.round(w * proporcion) : undefined
-      return `${img(archivo, { w, h, q })} ${w}w`
-    })
-    .join(', ')
+  const url = imagePath(file)
+
+  return widths.map((width) => `${url} ${width}w`).join(', ')
 }

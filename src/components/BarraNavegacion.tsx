@@ -1,62 +1,105 @@
-import { navegacion, sitio } from '@/content/micrositio'
+import { useState } from 'react'
+import { Link, useRouterState } from '@tanstack/react-router'
+
+const enlaces = [
+  { etiqueta: 'El proyecto', to: '/proyecto' },
+  { etiqueta: 'Funciones', to: '/funciones' },
+  { etiqueta: 'Ensayos', to: '/ensayos' },
+  { etiqueta: 'Materiales', to: '/materiales' },
+  { etiqueta: 'Contacto', to: '/contacto' },
+] as const
 
 export function BarraNavegacion() {
+  const [abierto, setAbierto] = useState(false)
+
+  const pathname = useRouterState({
+    select: (state) => state.location.pathname,
+  })
+
   return (
-    <header className="sticky top-0 z-40 border-b border-ink/12 bg-paper/88 backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl items-center gap-6 px-5 py-3 sm:px-8">
-        <a
-          href="#portada"
-          className="flex shrink-0 items-center gap-3"
-          aria-label={`${sitio.nombre}, ir al inicio`}
+    <header className="sticky top-0 z-50 border-b border-ink/15 bg-paper/95 backdrop-blur-sm">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
+        <Link
+          to="/"
+          onClick={() => setAbierto(false)}
+          className="shrink-0"
+          aria-label="Cineclub Abarca — Inicio"
         >
           <img
-            src="/.netlify/images?url=/img/logo-cineclub.png&w=200&fm=webp"
+            src="/img/logo-cineclub.png"
             alt=""
-            width={100}
-            height={40}
-            className="h-7 w-auto"
+            width={160}
+            height={64}
+            className="h-10 w-auto object-contain md:h-12"
           />
-          <span className="sr-only">{sitio.nombre}</span>
-        </a>
+        </Link>
 
-        <nav aria-label="Secciones del sitio" className="hidden flex-1 lg:block">
-          <ul className="flex flex-wrap items-center gap-x-6 gap-y-1">
-            {navegacion.map((item) => (
-              <li key={item.id}>
-                <a
-                  href={`#${item.id}`}
-                  className="kicker text-ink-soft transition-colors hover:text-brick"
-                >
-                  {item.etiqueta}
-                </a>
-              </li>
-            ))}
-          </ul>
+        <nav
+          className="hidden items-center gap-7 md:flex"
+          aria-label="Navegación principal"
+        >
+          {enlaces.map((enlace) => {
+            const activo = pathname === enlace.to
+
+            return (
+              <Link
+                key={enlace.etiqueta}
+                to={enlace.to}
+                aria-current={activo ? 'page' : undefined}
+                className={`nav-link font-sans text-xs uppercase tracking-[0.14em] text-ink transition-opacity hover:opacity-55 ${
+                  activo ? 'font-semibold' : ''
+                }`}
+              >
+                {enlace.etiqueta}
+              </Link>
+            )
+          })}
         </nav>
 
-        <a
-          href="#inscripcion"
-          className="ml-auto shrink-0 rounded-full bg-brick px-4 py-2 text-[0.8rem] font-bold tracking-wide text-paper transition-colors hover:bg-brick-deep sm:px-5"
+        <button
+          type="button"
+          aria-label={abierto ? 'Cerrar menú' : 'Abrir menú'}
+          aria-expanded={abierto}
+          aria-controls="menu-movil"
+          onClick={() => setAbierto((valor) => !valor)}
+          className="flex h-11 w-11 items-center justify-center rounded-full bg-brick text-paper md:hidden"
         >
-          Inscribirme
-        </a>
+          <span
+            aria-hidden="true"
+            className="text-xl leading-none"
+          >
+            {abierto ? '×' : '☰'}
+          </span>
+        </button>
       </div>
 
-      {/* En pantallas angostas las secciones viajan en una tira desplazable */}
-      <nav
-        aria-label="Secciones del sitio"
-        className="overflow-x-auto border-t border-ink/10 lg:hidden"
-      >
-        <ul className="flex w-max items-center gap-5 px-5 py-2 sm:px-8">
-          {navegacion.map((item) => (
-            <li key={item.id}>
-              <a href={`#${item.id}`} className="kicker whitespace-nowrap text-ink-soft">
-                {item.etiqueta}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
+      {abierto ? (
+        <nav
+          id="menu-movil"
+          className="border-t border-ink/10 bg-brick px-5 py-6 md:hidden"
+          aria-label="Navegación móvil"
+        >
+          <div className="mx-auto flex max-w-6xl flex-col gap-5">
+            {enlaces.map((enlace) => {
+              const activo = pathname === enlace.to
+
+              return (
+                <Link
+                  key={enlace.etiqueta}
+                  to={enlace.to}
+                  aria-current={activo ? 'page' : undefined}
+                  onClick={() => setAbierto(false)}
+                  className={`font-sans text-sm uppercase tracking-[0.15em] text-paper ${
+                    activo ? 'font-semibold underline underline-offset-4' : ''
+                  }`}
+                >
+                  {enlace.etiqueta}
+                </Link>
+              )
+            })}
+          </div>
+        </nav>
+      ) : null}
     </header>
   )
 }

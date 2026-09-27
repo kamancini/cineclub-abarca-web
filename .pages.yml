@@ -1,0 +1,124 @@
+media:
+  - name: imagenes
+    label: Imágenes del sitio
+    input: public/img
+    output: /img
+    categories: [image]
+    rename: safe
+
+content:
+  - name: funciones
+    label: Funciones
+    type: file
+    path: src/content/funciones.json
+    format: json
+    list:
+      collapsible:
+        collapsed: true
+        summary: "{titulo} — {fecha}"
+
+    operations:
+      create: false
+      delete: false
+
+    fields:
+      - name: slug
+        label: Identificador
+        type: string
+        required: true
+        description: "Solo minúsculas, números y guiones. Ejemplo: cineclub-orlando-octubre-2026"
+        pattern:
+          regex: "^[a-z0-9-]+$"
+          message: "Usa solo letras minúsculas, números y guiones."
+
+      - name: titulo
+        label: Título
+        type: string
+        required: true
+
+      - name: ciclo
+        label: Ciclo
+        type: string
+        description: "Opcional."
+
+      - name: fecha
+        label: Fecha
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+
+      - name: hora
+        label: Hora
+        type: string
+        description: "Ejemplo: 19:00"
+
+      - name: lugar
+        label: Lugar
+        type: string
+        description: "Ejemplo: Hamburgo 36, Ñuñoa"
+
+      - name: descripcion
+        label: Descripción
+        type: text
+        required: true
+
+      - name: pelicula
+        label: Película
+        type: string
+
+      - name: obra
+        label: Obra literaria
+        type: string
+
+      - name: imagen
+        label: Imagen o afiche
+        type: image
+        options:
+          media: imagenes
+
+      - name: imagenAlt
+        label: Texto alternativo de la imagen
+        type: string
+        description: "Describe brevemente la imagen para accesibilidad."
+
+      - name: invitados
+        label: Invitados
+        type: string
+        list: true
+
+      - name: informacionAdicional
+        label: Información adicional
+        type: text
+
+      - name: formularioUrl
+        label: Formulario de inscripción
+        type: string
+        description: "Pega aquí la URL completa del formulario de esta función."
+
+      - name: cuposMaximos
+        label: Cupos máximos
+        type: number
+
+      - name: cuposDisponibles
+        label: Cupos disponibles
+        type: number
+
+      - name: estado
+        label: Estado
+        type: select
+        default: auto
+        options:
+          values:
+            - name: auto
+              label: Automático
+            - name: abiertas
+              label: Inscripciones abiertas
+            - name: ultimos_cupos
+              label: Últimos cupos
+            - name: agotados
+              label: Cupos agotados
+            - name: cerradas
+              label: Inscripciones cerradas
+            - name: realizada
+              label: Actividad realizada
