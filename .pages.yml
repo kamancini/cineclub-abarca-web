@@ -12,13 +12,9 @@ content:
     type: file
     path: src/content/funciones.json
     format: json
-    list:
-      collapsible:
-        collapsed: true
-        summary: "{titulo} — {fecha}"
+    list: true
 
     operations:
-      create: false
       delete: false
 
     fields:
