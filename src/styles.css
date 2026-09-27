@@ -4,10 +4,10 @@
 /*
   Cineclub Abarca — sistema visual
 
-  Conserva la paleta del sitio nuevo, pero recupera rasgos del sitio original:
-  - IM Fell English para títulos (H1/H2/H3)
+  - IM Fell English para títulos
   - Jost para texto, navegación y UI
-  - papel analógico con fibra, pequeñas imperfecciones y sombra editorial
+  - textura real de papel del proyecto
+  - fotografías siempre limpias
 */
 
 @theme {
@@ -27,13 +27,16 @@
 :root {
   --background-color: var(--color-paper);
   --paper-surface: #f2e7d6;
-  --paper-fiber-1: rgba(65, 43, 27, 0.055);
-  --paper-fiber-2: rgba(65, 43, 27, 0.04);
-  --paper-light: rgba(255, 255, 255, 0.12);
-  --paper-shadow: rgba(72, 44, 27, 0.04);
+
+  --texture-image: url("/img/texture-h.png");
+
   --background-opacity: 0.72;
   --background-opacity-dark: 0.12;
 }
+
+/* -------------------------------------------------------
+   BASE
+------------------------------------------------------- */
 
 html {
   scroll-behavior: smooth;
@@ -46,28 +49,32 @@ body {
 
   background-color: var(--background-color);
 
+  /*
+    La capa beige suaviza la textura original.
+    La imagen permanece fija mientras se recorre el sitio.
+  */
   background-image:
-    radial-gradient(
-      circle at 20% 30%,
-      var(--paper-fiber-1) 0 0.8px,
-      transparent 1.1px
-    ),
-    radial-gradient(
-      circle at 70% 65%,
-      var(--paper-fiber-2) 0 0.8px,
-      transparent 1.1px
-    ),
     linear-gradient(
-      95deg,
-      var(--paper-light),
-      transparent 30%,
-      var(--paper-shadow)
-    );
+      rgba(242, 232, 216, 0.89),
+      rgba(242, 232, 216, 0.89)
+    ),
+    var(--texture-image);
 
   background-size:
-    11px 13px,
-    17px 19px,
-    100% 100%;
+    cover,
+    cover;
+
+  background-position:
+    center,
+    center top;
+
+  background-repeat:
+    no-repeat,
+    no-repeat;
+
+  background-attachment:
+    fixed,
+    fixed;
 
   color: var(--color-ink);
 
@@ -79,12 +86,9 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/*
-  Jerarquía semántica y visual.
-
-  Los tamaños concretos siguen definidos en cada layout responsive,
-  pero H1/H2/H3 comparten la familia editorial original.
-*/
+/* -------------------------------------------------------
+   TIPOGRAFÍA
+------------------------------------------------------- */
 
 h1,
 h2,
@@ -123,10 +127,9 @@ textarea {
   font-family: var(--font-sans);
 }
 
-/*
-  Las secciones con fondo sólido conservan una textura propia,
-  siempre detrás del contenido.
-*/
+/* -------------------------------------------------------
+   SECCIONES CON FONDO
+------------------------------------------------------- */
 
 .bg-paper-deep,
 .bg-ink {
@@ -134,8 +137,12 @@ textarea {
   isolation: isolate;
 }
 
-.bg-paper-deep::before,
-.bg-ink::before {
+/*
+  Papel beige:
+  aquí la textura puede verse un poco más que en el body.
+*/
+
+.bg-paper-deep::before {
   content: "";
 
   position: absolute;
@@ -145,36 +152,51 @@ textarea {
   pointer-events: none;
 
   background-image:
-    radial-gradient(
-      circle at 20% 30%,
-      rgba(65, 43, 27, 0.05) 0 0.8px,
-      transparent 1.1px
-    ),
-    radial-gradient(
-      circle at 70% 65%,
-      rgba(65, 43, 27, 0.035) 0 0.8px,
-      transparent 1.1px
-    ),
     linear-gradient(
-      95deg,
-      rgba(255, 255, 255, 0.08),
-      transparent 35%,
-      rgba(72, 44, 27, 0.03)
-    );
+      rgba(231, 216, 192, 0.74),
+      rgba(231, 216, 192, 0.74)
+    ),
+    var(--texture-image);
 
   background-size:
-    11px 13px,
-    17px 19px,
-    100% 100%;
-}
+    cover,
+    cover;
 
-.bg-paper-deep::before {
-  opacity: var(--background-opacity);
+  background-position:
+    center,
+    center;
+
+  background-repeat:
+    no-repeat,
+    no-repeat;
+
+  opacity: 0.42;
+
   mix-blend-mode: multiply;
 }
 
+/*
+  Secciones oscuras:
+  la textura queda apenas sugerida.
+*/
+
 .bg-ink::before {
-  opacity: var(--background-opacity-dark);
+  content: "";
+
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  pointer-events: none;
+
+  background-image: var(--texture-image);
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  opacity: 0.09;
+
   mix-blend-mode: soft-light;
 }
 
@@ -184,12 +206,9 @@ textarea {
   z-index: 1;
 }
 
-/*
-  Papel editorial para tarjetas.
-
-  No se aplica directamente a fotografías:
-  las imágenes permanecen limpias dentro de la hoja.
-*/
+/* -------------------------------------------------------
+   TARJETAS DE PAPEL
+------------------------------------------------------- */
 
 .analog-paper-card {
   position: relative;
@@ -197,28 +216,28 @@ textarea {
 
   background-color: var(--paper-surface);
 
+  /*
+    Aquí usamos una textura mucho más discreta.
+    No debe competir con la información de la función.
+  */
   background-image:
-    radial-gradient(
-      circle at 20% 30%,
-      rgba(65, 43, 27, 0.05) 0 0.8px,
-      transparent 1.1px
-    ),
-    radial-gradient(
-      circle at 70% 65%,
-      rgba(65, 43, 27, 0.04) 0 0.8px,
-      transparent 1.1px
-    ),
     linear-gradient(
-      95deg,
-      rgba(255, 255, 255, 0.11),
-      transparent 30%,
-      rgba(72, 44, 27, 0.035)
-    );
+      rgba(242, 231, 214, 0.94),
+      rgba(242, 231, 214, 0.94)
+    ),
+    var(--texture-image);
 
   background-size:
-    11px 13px,
-    17px 19px,
-    100% 100%;
+    cover,
+    900px auto;
+
+  background-position:
+    center,
+    center;
+
+  background-repeat:
+    no-repeat,
+    no-repeat;
 
   filter:
     drop-shadow(0 12px 18px rgba(46, 29, 18, 0.12))
@@ -293,11 +312,21 @@ textarea {
       0.5% 99.2%
     );
   }
+
+  /*
+    background-attachment fixed puede comportarse mal
+    en algunos navegadores móviles.
+  */
+  body {
+    background-attachment:
+      scroll,
+      scroll;
+  }
 }
 
-/*
-  Accesibilidad y preferencias del usuario
-*/
+/* -------------------------------------------------------
+   ACCESIBILIDAD
+------------------------------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -316,18 +345,16 @@ textarea {
 }
 
 /*
-  La antigua capa global de grano queda desactivada
-  para no ensuciar fotografías.
+  La capa global antigua de grano queda desactivada.
 */
 
 .grain {
   display: none;
 }
 
-/*
-  Etiquetas editoriales pequeñas:
-  "ENSAYOS", "PRÓXIMAMENTE", etc.
-*/
+/* -------------------------------------------------------
+   KICKERS / EPÍGRAFES
+------------------------------------------------------- */
 
 .kicker {
   font-family: var(--font-sans);
@@ -344,9 +371,9 @@ textarea {
   margin-top: 0.75rem !important;
 }
 
-/*
-  Navegación
-*/
+/* -------------------------------------------------------
+   NAVEGACIÓN
+------------------------------------------------------- */
 
 .nav-link {
   position: relative;
@@ -357,6 +384,7 @@ textarea {
   content: "";
 
   position: absolute;
+
   left: 0;
   right: 100%;
   bottom: -0.35rem;
@@ -373,10 +401,9 @@ textarea {
   right: 0;
 }
 
-/*
-  Perforación de película:
-  separador entre módulos.
-*/
+/* -------------------------------------------------------
+   PERFORACIÓN DE PELÍCULA
+------------------------------------------------------- */
 
 .perf {
   height: 14px;
@@ -395,9 +422,9 @@ textarea {
   background-repeat: repeat-x;
 }
 
-/*
-  Revelado al hacer scroll
-*/
+/* -------------------------------------------------------
+   REVEAL AL HACER SCROLL
+------------------------------------------------------- */
 
 .reveal {
   opacity: 0;
@@ -423,9 +450,9 @@ textarea {
   }
 }
 
-/*
-  Enlaces subrayados
-*/
+/* -------------------------------------------------------
+   ENLACES
+------------------------------------------------------- */
 
 .link {
   color: inherit;
@@ -450,9 +477,9 @@ textarea {
   background-size: 100% 2px;
 }
 
-/*
-  Campos de formulario
-*/
+/* -------------------------------------------------------
+   FORMULARIOS
+------------------------------------------------------- */
 
 .field {
   width: 100%;
@@ -460,6 +487,7 @@ textarea {
   background: transparent;
 
   border: 0;
+
   border-bottom: 1px solid
     color-mix(
       in srgb,
