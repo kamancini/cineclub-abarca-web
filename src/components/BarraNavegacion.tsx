@@ -1,5 +1,8 @@
 import { useState } from 'react'
-import { Link, useRouterState } from '@tanstack/react-router'
+import {
+  Link,
+  useRouterState,
+} from '@tanstack/react-router'
 
 const enlaces = [
   { etiqueta: 'El proyecto', to: '/proyecto' },
@@ -17,7 +20,7 @@ export function BarraNavegacion() {
   })
 
   return (
-    <header className="sticky top-0 z-50 border-b border-ink/15 bg-paper/95 backdrop-blur-sm">
+    <header className="sticky top-0 z-50 border-b border-ink/25 bg-paper/95 backdrop-blur-sm">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
         <Link
           to="/"
@@ -45,9 +48,11 @@ export function BarraNavegacion() {
               <Link
                 key={enlace.etiqueta}
                 to={enlace.to}
-                aria-current={activo ? 'page' : undefined}
-                className={`nav-link font-sans text-xs uppercase tracking-[0.14em] text-ink transition-opacity hover:opacity-55 ${
-                  activo ? 'font-semibold' : ''
+                aria-current={
+                  activo ? 'page' : undefined
+                }
+                className={`nav-link font-sans text-sm font-medium uppercase tracking-[0.1em] text-ink ${
+                  activo ? 'font-bold' : ''
                 }`}
               >
                 {enlace.etiqueta}
@@ -58,11 +63,17 @@ export function BarraNavegacion() {
 
         <button
           type="button"
-          aria-label={abierto ? 'Cerrar menú' : 'Abrir menú'}
+          aria-label={
+            abierto
+              ? 'Cerrar menú'
+              : 'Abrir menú'
+          }
           aria-expanded={abierto}
           aria-controls="menu-movil"
-          onClick={() => setAbierto((valor) => !valor)}
-          className="flex h-11 w-11 items-center justify-center rounded-full bg-brick text-paper md:hidden"
+          onClick={() =>
+            setAbierto((valor) => !valor)
+          }
+          className="flex h-11 w-11 items-center justify-center rounded-full bg-brick-deep text-paper md:hidden"
         >
           <span
             aria-hidden="true"
@@ -76,21 +87,30 @@ export function BarraNavegacion() {
       {abierto ? (
         <nav
           id="menu-movil"
-          className="border-t border-ink/10 bg-brick px-5 py-6 md:hidden"
+          className="border-t border-ink/20 bg-brick-deep px-5 py-6 md:hidden"
           aria-label="Navegación móvil"
         >
           <div className="mx-auto flex max-w-6xl flex-col gap-5">
             {enlaces.map((enlace) => {
-              const activo = pathname === enlace.to
+              const activo =
+                pathname === enlace.to
 
               return (
                 <Link
                   key={enlace.etiqueta}
                   to={enlace.to}
-                  aria-current={activo ? 'page' : undefined}
-                  onClick={() => setAbierto(false)}
-                  className={`font-sans text-sm uppercase tracking-[0.15em] text-paper ${
-                    activo ? 'font-semibold underline underline-offset-4' : ''
+                  aria-current={
+                    activo
+                      ? 'page'
+                      : undefined
+                  }
+                  onClick={() =>
+                    setAbierto(false)
+                  }
+                  className={`font-sans text-base font-medium uppercase tracking-[0.1em] text-paper ${
+                    activo
+                      ? 'font-bold underline underline-offset-4'
+                      : ''
                   }`}
                 >
                   {enlace.etiqueta}

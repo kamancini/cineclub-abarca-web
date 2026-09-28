@@ -8,17 +8,28 @@
   - Jost para texto, navegación y UI
   - textura real de papel del proyecto
   - fotografías siempre limpias
+  - contraste y legibilidad reforzados
 */
 
 @theme {
   --color-paper: #f2e8d8;
   --color-paper-deep: #e7d8c0;
+
   --color-ink: #17130f;
   --color-ink-soft: #443a30;
-  --color-brick: #b33229;
+
+  /*
+    Se oscurece levemente el rojo principal para asegurar
+    mejor contraste sobre fondos beige.
+  */
+  --color-brick: #a52e26;
   --color-brick-deep: #8d241d;
   --color-brick-light: #e08a79;
-  --color-sepia: #765f46;
+
+  /*
+    Sepia más oscuro para mejorar contraste en textos secundarios.
+  */
+  --color-sepia: #654f39;
 
   --font-display: "IM Fell English", Georgia, serif;
   --font-sans: "Jost", "Helvetica Neue", Arial, sans-serif;
@@ -79,8 +90,13 @@ body {
   color: var(--color-ink);
 
   font-family: var(--font-sans);
-  font-size: 1.0625rem;
-  line-height: 1.7;
+
+  /*
+    18 px como tamaño base:
+    mejora la lectura de párrafos y textos secundarios.
+  */
+  font-size: 1.125rem;
+  line-height: 1.75;
 
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -125,6 +141,12 @@ button,
 input,
 textarea {
   font-family: var(--font-sans);
+}
+
+p,
+li,
+dd {
+  line-height: 1.75;
 }
 
 /* -------------------------------------------------------
@@ -328,6 +350,11 @@ textarea {
    ACCESIBILIDAD
 ------------------------------------------------------- */
 
+/*
+  Los movimientos se eliminan cuando el dispositivo o
+  navegador indica preferencia por movimiento reducido.
+*/
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -335,13 +362,13 @@ textarea {
 }
 
 ::selection {
-  background: var(--color-brick);
+  background: var(--color-brick-deep);
   color: var(--color-paper);
 }
 
 :focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: 3px;
+  outline: 3px solid currentColor;
+  outline-offset: 4px;
 }
 
 /*
@@ -358,10 +385,20 @@ textarea {
 
 .kicker {
   font-family: var(--font-sans);
-  font-size: 0.75rem;
+
+  /*
+    Antes eran 12 px. Los dejamos en 14 px para mejorar
+    legibilidad sin perder el carácter gráfico.
+  */
+  font-size: 0.875rem;
   font-weight: 600;
-  line-height: 1.4;
-  letter-spacing: 0.2em;
+  line-height: 1.5;
+
+  /*
+    Un espaciado ligeramente menor también facilita
+    la lectura de textos en mayúsculas.
+  */
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
@@ -389,7 +426,7 @@ textarea {
   right: 100%;
   bottom: -0.35rem;
 
-  height: 1px;
+  height: 2px;
 
   background: currentColor;
 
@@ -469,7 +506,7 @@ textarea {
 
   transition: background-size 0.3s ease;
 
-  padding-bottom: 1px;
+  padding-bottom: 2px;
 }
 
 .link:hover,
@@ -491,16 +528,16 @@ textarea {
   border-bottom: 1px solid
     color-mix(
       in srgb,
-      var(--color-paper) 38%,
+      var(--color-paper) 60%,
       transparent
     );
 
   color: var(--color-paper);
 
   font-family: var(--font-sans);
-  font-size: 1.0625rem;
+  font-size: 1.125rem;
 
-  padding: 0.6rem 0.1rem;
+  padding: 0.7rem 0.1rem;
 
   transition: border-color 0.25s ease;
 }
@@ -509,7 +546,7 @@ textarea {
   color:
     color-mix(
       in srgb,
-      var(--color-paper) 45%,
+      var(--color-paper) 72%,
       transparent
     );
 }
@@ -520,5 +557,5 @@ textarea {
 }
 
 .field:user-invalid {
-  border-color: #e2857c;
+  border-color: #f0a099;
 }

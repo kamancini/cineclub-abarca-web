@@ -65,7 +65,8 @@ export const proposito = {
     'El propósito de nuestro proyecto es fortalecer el tejido comunitario en un espacio seguro, acogedor y gratuito.',
     'Buscamos reivindicar los encuentros presenciales en torno a intereses compartidos, destacando el valor de la conversación reflexiva y el cine como punto de partida para conectar con otros.',
   ],
-  destacado: 'El cine como punto de partida para conectar con otros.',
+  destacado:
+    'El cine como punto de partida para conectar con otros.',
 } as const
 
 /** Módulo 4 — Casa Taller de Agustín Abarca */
@@ -93,27 +94,28 @@ export const origen = {
 export const equipo = {
   numero: '05',
   titulo: 'Quiénes somos',
-  bajada: 'El equipo del Cineclub Abarca está integrado por:',
+  bajada:
+    'El equipo del Cineclub Abarca está integrado por:',
   personas: [
     {
       nombre: 'Rosa María Droguett Abarca',
-      cargo: 'cofundadora',
+      cargo: 'Cofundadora',
     },
     {
-      nombre: 'Cristóbal Ocampo',
-      cargo: 'cofundador',
+      nombre: 'Cristóbal Ambroggio',
+      cargo: 'Cofundador',
     },
     {
       nombre: 'Karla Mancini',
-      cargo: 'community manager',
+      cargo: 'Community manager',
     },
     {
       nombre: 'Vicente Rodríguez',
-      cargo: 'mediador Cineclub de Lectura',
+      cargo: 'Mediador Cineclub de Lectura',
     },
     {
       nombre: 'Macarena Farías',
-      cargo: 'diseñadora',
+      cargo: 'Diseñadora',
     },
   ],
   parrafos: [
@@ -146,7 +148,8 @@ export const acciones = {
   items: [
     {
       titulo: 'Conocer el proyecto',
-      texto: 'Qué hacemos, por qué existe y quiénes lo sostienen.',
+      texto:
+        'Qué hacemos, por qué existe y quiénes lo sostienen.',
       enlace: {
         href: '/proyecto',
         texto: 'Ver el proyecto',
@@ -174,7 +177,8 @@ export const acciones = {
     },
     {
       titulo: 'Descargar material',
-      texto: 'Material del cineclub para descargar.',
+      texto:
+        'Material del cineclub para descargar.',
       enlace: {
         href: '/materiales',
         texto: 'Ver materiales',
@@ -206,7 +210,8 @@ export const inscripcion = {
   enviando: 'Enviando…',
   exito: {
     titulo: 'Recibimos tu inscripción',
-    texto: 'Gracias por escribirnos. Te contactaremos por correo.',
+    texto:
+      'Gracias por escribirnos. Te contactaremos por correo.',
   },
   error:
     'No pudimos enviar tu inscripción. Inténtalo de nuevo o escríbenos a cineclubabarca@gmail.com.',
@@ -216,19 +221,13 @@ export const inscripcion = {
 export const visitar = {
   numero: '09',
   titulo: 'Dónde nos encontramos',
-  bajada: 'Nuestros encuentros ocurren en Ñuñoa, en dos direcciones:',
+  bajada: 'Nuestros encuentros ocurren en Ñuñoa:',
   direcciones: [
     {
       calle: 'Hamburgo 36',
       comuna: 'Ñuñoa',
       mapa:
         'https://www.google.com/maps/search/?api=1&query=Hamburgo+36%2C+%C3%91u%C3%B1oa%2C+Santiago',
-    },
-    {
-      calle: 'Tegualda 1871',
-      comuna: 'Ñuñoa',
-      mapa:
-        'https://www.google.com/maps/search/?api=1&query=Tegualda+1871%2C+%C3%91u%C3%B1oa%2C+Santiago',
     },
   ],
 } as const

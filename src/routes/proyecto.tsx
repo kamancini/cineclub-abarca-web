@@ -28,8 +28,20 @@ export const Route = createFileRoute('/proyecto')({
         content:
           'El origen, propósito y equipo del Cineclub Abarca.',
       },
+      {
+        property: 'og:url',
+        content: 'https://cineclubabarca.cl/proyecto',
+      },
+    ],
+
+    links: [
+      {
+        rel: 'canonical',
+        href: 'https://cineclubabarca.cl/proyecto',
+      },
     ],
   }),
+
   component: PaginaProyecto,
 })
 
@@ -46,7 +58,7 @@ function PaginaProyecto() {
               El proyecto
             </h1>
 
-            <p className="mt-7 max-w-3xl text-lg leading-relaxed text-paper/90">
+            <p className="mt-7 max-w-3xl text-lg leading-[1.75] text-paper">
               Cineclub Abarca es un espacio de encuentro en torno al cine,
               la conversación y la construcción de comunidad.
             </p>
@@ -67,14 +79,14 @@ function PaginaProyecto() {
                 Por qué existe
               </h2>
 
-              <blockquote className="mt-7 border-l-2 border-brick pl-6 font-display text-[clamp(1.4rem,2.6vw,2rem)] leading-snug italic">
+              <blockquote className="mt-7 border-l-2 border-brick-deep pl-6 font-display text-[clamp(1.4rem,2.6vw,2rem)] leading-snug italic">
                 {proposito.destacado}
               </blockquote>
 
               {proposito.parrafos.map((parrafo) => (
                 <p
                   key={parrafo}
-                  className="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft"
+                  className="mt-6 max-w-xl text-lg leading-[1.75] text-ink-soft"
                 >
                   {parrafo}
                 </p>
@@ -85,7 +97,7 @@ function PaginaProyecto() {
           <Reveal delay={120}>
             <img
               src="/img/conversacion-cineclub.jpg"
-              alt="Personas conversando después de una función del Cineclub Abarca en la Casa Taller."
+              alt="Conversación después de una función del Cineclub Abarca."
               loading="lazy"
               decoding="async"
               className="h-[440px] w-full object-cover lg:h-[580px]"
@@ -111,20 +123,22 @@ function PaginaProyecto() {
                 {origen.parrafos.map((parrafo) => (
                   <p
                     key={parrafo}
-                    className="mt-6 text-lg leading-relaxed text-ink-soft"
+                    className="mt-6 text-lg leading-[1.75] text-ink-soft"
                   >
                     {parrafo}
                   </p>
                 ))}
 
-                <dl className="mt-10 grid gap-6 border-t border-ink/20 pt-7 sm:grid-cols-2">
+                <dl className="mt-10 grid gap-6 border-t border-ink/25 pt-7 sm:grid-cols-2">
                   {origen.hitos.map((hito) => (
-                    <div key={`${hito.dato}-${hito.glosa}`}>
-                      <dt className="font-display text-4xl text-brick">
+                    <div
+                      key={`${hito.dato}-${hito.glosa}`}
+                    >
+                      <dt className="font-display text-4xl text-brick-deep">
                         {hito.dato}
                       </dt>
 
-                      <dd className="mt-2 leading-relaxed text-ink-soft">
+                      <dd className="mt-2 leading-[1.75] text-ink-soft">
                         {hito.glosa}
                       </dd>
                     </div>
@@ -136,7 +150,7 @@ function PaginaProyecto() {
             <Reveal delay={120}>
               <img
                 src="/img/comunidad-patio.jpg"
-                alt="Personas reunidas alrededor de una mesa en el patio de la Casa Taller antes de una función."
+                alt="Encuentro del Cineclub Abarca en el patio de la Casa Taller."
                 loading="lazy"
                 decoding="async"
                 className="h-[480px] w-full object-cover lg:h-full lg:min-h-[620px]"
@@ -203,35 +217,37 @@ function PaginaProyecto() {
                   Quiénes somos
                 </h2>
 
-                <p className="mt-6 text-lg leading-relaxed text-ink-soft">
+                <p className="mt-6 text-lg leading-[1.75] text-ink-soft">
                   {equipo.bajada}
                 </p>
               </Reveal>
 
-              <ul className="mt-8 border-t border-ink/20">
-                {equipo.personas.map((persona, index) => (
-                  <Reveal
-                    as="li"
-                    key={persona.nombre}
-                    delay={index * 70}
-                  >
-                    <div className="border-b border-ink/20 py-5">
-                      <h3 className="text-2xl leading-[1.18]">
-                        {persona.nombre}
-                      </h3>
+              <ul className="mt-8 border-t border-ink/25">
+                {equipo.personas.map(
+                  (persona, index) => (
+                    <Reveal
+                      as="li"
+                      key={persona.nombre}
+                      delay={index * 70}
+                    >
+                      <div className="border-b border-ink/25 py-5">
+                        <h3 className="text-2xl leading-[1.18]">
+                          {persona.nombre}
+                        </h3>
 
-                      <p className="mt-2 leading-relaxed text-sepia">
-                        {persona.cargo}
-                      </p>
-                    </div>
-                  </Reveal>
-                ))}
+                        <p className="mt-2 text-base leading-[1.7] text-ink-soft">
+                          {persona.cargo}
+                        </p>
+                      </div>
+                    </Reveal>
+                  ),
+                )}
               </ul>
 
               {equipo.parrafos.map((parrafo) => (
                 <p
                   key={parrafo}
-                  className="mt-7 text-lg leading-relaxed text-ink-soft"
+                  className="mt-7 text-lg leading-[1.75] text-ink-soft"
                 >
                   {parrafo}
                 </p>

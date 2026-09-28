@@ -6,7 +6,7 @@ export function Footer() {
   return (
     <footer className="bg-ink text-paper">
       <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8 lg:py-16">
-        <div className="grid gap-10 border-b border-paper/20 pb-10 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
+        <div className="grid gap-10 border-b border-paper/30 pb-10 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
           {/* Identidad */}
           <div>
             <Link
@@ -23,23 +23,24 @@ export function Footer() {
               />
             </Link>
 
-            <p className="mt-5 max-w-md leading-[1.7] text-paper/80">
-              Un espacio íntimo de encuentro en torno al cine, diseñado para
-              compartir opiniones, sensibilidades y vivencias personales.
+            <p className="mt-5 max-w-md text-lg leading-[1.75] text-paper">
+              Un espacio íntimo de encuentro en torno al cine,
+              diseñado para compartir opiniones, sensibilidades y
+              vivencias personales.
             </p>
           </div>
 
           {/* Navegación */}
           <nav aria-label="Navegación del pie de página">
-            <p className="text-sm font-bold uppercase tracking-[0.12em] text-paper/70">
+            <p className="text-base font-semibold uppercase tracking-[0.1em] text-paper">
               Explorar
             </p>
 
-            <ul className="mt-4 space-y-2">
+            <ul className="mt-5 space-y-3">
               <li>
                 <Link
                   to="/proyecto"
-                  className="transition-opacity hover:opacity-70"
+                  className="link text-base text-paper"
                 >
                   El proyecto
                 </Link>
@@ -48,7 +49,7 @@ export function Footer() {
               <li>
                 <Link
                   to="/funciones"
-                  className="transition-opacity hover:opacity-70"
+                  className="link text-base text-paper"
                 >
                   Funciones
                 </Link>
@@ -57,7 +58,7 @@ export function Footer() {
               <li>
                 <Link
                   to="/ensayos"
-                  className="transition-opacity hover:opacity-70"
+                  className="link text-base text-paper"
                 >
                   Ensayos
                 </Link>
@@ -66,7 +67,7 @@ export function Footer() {
               <li>
                 <Link
                   to="/materiales"
-                  className="transition-opacity hover:opacity-70"
+                  className="link text-base text-paper"
                 >
                   Materiales
                 </Link>
@@ -75,7 +76,7 @@ export function Footer() {
               <li>
                 <Link
                   to="/contacto"
-                  className="transition-opacity hover:opacity-70"
+                  className="link text-base text-paper"
                 >
                   Contacto
                 </Link>
@@ -85,14 +86,14 @@ export function Footer() {
 
           {/* Contacto */}
           <div>
-            <p className="text-sm font-bold uppercase tracking-[0.12em] text-paper/70">
+            <p className="text-base font-semibold uppercase tracking-[0.1em] text-paper">
               Contacto
             </p>
 
-            <div className="mt-4 space-y-3">
+            <div className="mt-5 space-y-4">
               <a
                 href={`mailto:${contacto.correo}`}
-                className="block break-all transition-opacity hover:opacity-70"
+                className="link block break-all text-base text-paper"
               >
                 {contacto.correo}
               </a>
@@ -101,7 +102,8 @@ export function Footer() {
                 href={contacto.instagram.url}
                 target="_blank"
                 rel="noreferrer"
-                className="block transition-opacity hover:opacity-70"
+                aria-label={`${contacto.instagram.usuario} en Instagram, se abre en una pestaña nueva`}
+                className="link block text-base text-paper"
               >
                 {contacto.instagram.usuario}
               </a>
@@ -110,8 +112,10 @@ export function Footer() {
         </div>
 
         {/* Línea inferior */}
-        <div className="flex flex-col gap-3 pt-6 text-sm text-paper/70 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Cineclub Abarca</p>
+        <div className="flex flex-col gap-3 pt-6 text-base text-paper sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            © {new Date().getFullYear()} Cineclub Abarca
+          </p>
 
           <p>Ñuñoa · Santiago de Chile</p>
         </div>

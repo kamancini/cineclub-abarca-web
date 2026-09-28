@@ -1,15 +1,24 @@
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
+import {
+  HeadContent,
+  Scripts,
+  createRootRoute,
+} from '@tanstack/react-router'
 
 import '../styles.css'
 import { Footer } from '@/components/Footer'
 
 const siteName = 'Cineclub Abarca'
+
 const siteTitle =
   'Cineclub Abarca — Un espacio íntimo de encuentro en torno al cine'
+
 const siteDescription =
   'Espacio íntimo de encuentro en torno al cine en Ñuñoa: ciclos temáticos con funciones guiadas, gratuitas, para compartir opiniones, sensibilidades y vivencias personales.'
 
-const socialImage = '/img/hero-cineclub.jpg'
+const siteUrl = 'https://cineclubabarca.cl'
+
+const socialImage = `${siteUrl}/img/hero-cineclub.jpg`
+
 const socialImageAlt =
   'Encuentro del Cineclub Abarca en torno a una función de cine.'
 
@@ -65,7 +74,7 @@ export const Route = createRootRoute({
         content: socialImageAlt,
       },
 
-      // Twitter
+      // Twitter / X
       {
         name: 'twitter:card',
         content: 'summary_large_image',

@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { Instagram } from 'lucide-react'
 
 import { BarraNavegacion } from '@/components/BarraNavegacion'
 import { Reveal } from '@/components/Reveal'
@@ -15,8 +16,29 @@ export const Route = createFileRoute('/contacto')({
         content:
           'Contacta al Cineclub Abarca por correo electrónico o Instagram.',
       },
+      {
+        property: 'og:title',
+        content: 'Contacto | Cineclub Abarca',
+      },
+      {
+        property: 'og:description',
+        content:
+          'Escríbenos por correo electrónico o Instagram para contactar al Cineclub Abarca.',
+      },
+      {
+        property: 'og:url',
+        content: 'https://cineclubabarca.cl/contacto',
+      },
+    ],
+
+    links: [
+      {
+        rel: 'canonical',
+        href: 'https://cineclubabarca.cl/contacto',
+      },
     ],
   }),
+
   component: PaginaContacto,
 })
 
@@ -32,9 +54,10 @@ function PaginaContacto() {
               Contacto
             </h1>
 
-            <p className="mt-7 max-w-2xl text-lg leading-relaxed text-paper/90">
-  ¿Tienes preguntas? Escríbenos y te responderemos a la brevedad.
-</p>
+            <p className="mt-7 max-w-2xl text-lg leading-[1.75] text-paper">
+              ¿Tienes preguntas? Escríbenos y te responderemos a la
+              brevedad.
+            </p>
           </div>
         </header>
 
@@ -43,22 +66,22 @@ function PaginaContacto() {
           className="mx-auto max-w-6xl px-5 py-20 sm:px-8 lg:py-28"
         >
           <Reveal>
-            <div className="grid gap-10 border-t border-ink/20 pt-8 sm:grid-cols-2">
+            <div className="grid gap-12 border-t border-ink/25 pt-9 sm:grid-cols-2">
               <div>
-                <h2 className="font-sans text-sm font-bold uppercase tracking-[0.14em] text-sepia">
+                <h2 className="font-sans text-base font-semibold uppercase tracking-[0.1em] text-ink-soft">
                   Correo electrónico
                 </h2>
 
                 <a
                   href={`mailto:${contacto.correo}`}
-                  className="link mt-3 inline-block font-display text-[clamp(1.5rem,3vw,2.2rem)] break-all"
+                  className="link mt-4 inline-block break-all font-display text-[clamp(1.5rem,3vw,2.2rem)] text-ink"
                 >
                   {contacto.correo}
                 </a>
               </div>
 
               <div>
-                <h2 className="font-sans text-sm font-bold uppercase tracking-[0.14em] text-sepia">
+                <h2 className="font-sans text-base font-semibold uppercase tracking-[0.1em] text-ink-soft">
                   Instagram
                 </h2>
 
@@ -66,9 +89,18 @@ function PaginaContacto() {
                   href={contacto.instagram.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="link mt-3 inline-block font-display text-[clamp(1.5rem,3vw,2.2rem)]"
+                  aria-label={`${contacto.instagram.usuario} en Instagram, se abre en una pestaña nueva`}
+                  className="link mt-4 inline-flex items-center gap-3 font-display text-[clamp(1.5rem,3vw,2.2rem)] text-ink"
                 >
-                  {contacto.instagram.usuario}
+                  <Instagram
+                    aria-hidden="true"
+                    strokeWidth={1.8}
+                    className="h-7 w-7 shrink-0 sm:h-8 sm:w-8"
+                  />
+
+                  <span>
+                    {contacto.instagram.usuario}
+                  </span>
                 </a>
               </div>
             </div>
