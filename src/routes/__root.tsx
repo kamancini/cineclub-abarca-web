@@ -1,10 +1,13 @@
 import {
   HeadContent,
+  Link,
   Scripts,
   createRootRoute,
 } from '@tanstack/react-router'
 
 import '../styles.css'
+
+import { BarraNavegacion } from '@/components/BarraNavegacion'
 import { Footer } from '@/components/Footer'
 
 const siteName = 'Cineclub Abarca'
@@ -110,8 +113,44 @@ export const Route = createRootRoute({
     ],
   }),
 
+  notFoundComponent: PaginaNoEncontrada,
+
   shellComponent: RootDocument,
 })
+
+function PaginaNoEncontrada() {
+  return (
+    <>
+      <BarraNavegacion />
+
+      <main>
+        <section className="mx-auto flex min-h-[65vh] max-w-6xl items-center px-5 py-20 sm:px-8 lg:py-28">
+          <div className="max-w-2xl">
+            <p className="font-sans text-sm font-semibold uppercase tracking-[0.1em] text-brick-deep">
+              Error 404
+            </p>
+
+            <h1 className="mt-4 font-display text-[clamp(3rem,7vw,5.5rem)] leading-[0.98] text-ink">
+              Esta página no existe
+            </h1>
+
+            <p className="mt-6 text-lg leading-[1.75] text-ink-soft">
+              Puede que el enlace haya cambiado o que la página ya no
+              esté disponible.
+            </p>
+
+            <Link
+              to="/"
+              className="mt-8 inline-flex rounded-full bg-brick-deep px-7 py-3.5 font-sans text-sm font-semibold uppercase tracking-[0.08em] text-paper transition-transform hover:-translate-y-0.5"
+            >
+              Volver al inicio
+            </Link>
+          </div>
+        </section>
+      </main>
+    </>
+  )
+}
 
 function RootDocument({
   children,

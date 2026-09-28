@@ -10,7 +10,6 @@ import {
   visitar,
 } from '@/content/micrositio'
 import { getFuncionesPublicadas } from '@/lib/cupos'
-import { img, srcSet } from '@/lib/img'
 
 export const Route = createFileRoute('/')({
   loader: async () => {
@@ -57,41 +56,6 @@ export const Route = createFileRoute('/')({
   component: Micrositio,
 })
 
-function Foto({
-  archivo,
-  alt,
-  proporcion,
-  className = '',
-  sizes = '(min-width: 1024px) 50vw, 100vw',
-  ancho = 1400,
-}: {
-  archivo: string
-  alt: string
-  proporcion: number
-  className?: string
-  sizes?: string
-  ancho?: number
-}) {
-  return (
-    <img
-      src={img(archivo, {
-        w: ancho,
-        h: Math.round(ancho * proporcion),
-      })}
-      srcSet={srcSet(
-        archivo,
-        [600, 900, 1400, 1800],
-        proporcion,
-      )}
-      sizes={sizes}
-      alt={alt}
-      loading="lazy"
-      decoding="async"
-      className={`h-full w-full object-cover ${className}`}
-    />
-  )
-}
-
 function Micrositio() {
   const { funciones } = Route.useLoaderData()
 
@@ -111,46 +75,37 @@ function Micrositio() {
         {/* Portada */}
         <section
           id="portada"
-          className="mx-auto max-w-6xl px-5 pb-20 pt-10 sm:px-8 sm:pt-14 lg:pb-28 lg:pt-16"
+          className="relative min-h-[90vh] bg-ink bg-cover bg-center bg-no-repeat text-paper"
+          style={{
+            backgroundImage:
+              "linear-gradient(90deg, rgba(23,19,15,0.90) 0%, rgba(23,19,15,0.72) 42%, rgba(23,19,15,0.28) 100%), url('/img/hero-cineclub.jpg')",
+          }}
         >
-          <div className="relative">
-            <Reveal>
-              <figure className="overflow-hidden">
-                <img
-                  src="/img/hero-cineclub.jpg"
-                  alt="Encuentro del Cineclub Abarca durante una función."
-                  decoding="async"
-                  fetchPriority="high"
-                  className="h-[430px] w-full object-cover sm:h-[560px] lg:h-[680px]"
-                />
-              </figure>
-            </Reveal>
-
-            <Reveal
-              delay={140}
-              className="relative z-10 mx-auto -mt-20 w-[92%] sm:-mt-28 sm:w-[88%] lg:absolute lg:bottom-[-4rem] lg:left-10 lg:mt-0 lg:w-[58%]"
-            >
-              <div className="analog-paper-card p-7 sm:p-9 lg:p-11">
-                <p className="font-sans text-sm font-semibold uppercase tracking-[0.12em] text-brick-deep">
+          <div className="mx-auto flex min-h-[90vh] max-w-6xl items-end px-5 py-16 sm:px-8 sm:py-20 lg:items-center lg:py-24">
+            <div className="max-w-3xl">
+              <Reveal>
+                <p className="font-sans text-sm font-semibold uppercase tracking-[0.1em] text-paper">
                   Cineclub en Ñuñoa · Funciones gratuitas
                 </p>
 
                 <h1 className="mt-5">
-                  <span className="block font-display text-[clamp(3rem,7vw,5.5rem)] leading-[0.94] text-ink">
+                  <span className="block font-display text-[clamp(3.2rem,8vw,5.9rem)] leading-[0.92] text-paper [text-shadow:0_2px_18px_rgba(0,0,0,0.45)]">
                     Cineclub Abarca
                   </span>
 
-                  <span className="mt-6 block max-w-2xl font-display text-[clamp(1.45rem,2.8vw,2.25rem)] italic leading-[1.3] text-ink">
+                  <span className="mt-6 block max-w-2xl font-display text-[clamp(1.55rem,3vw,2.5rem)] italic leading-[1.3] text-paper [text-shadow:0_2px_16px_rgba(0,0,0,0.4)]">
                     {sitio.titulo}
                   </span>
                 </h1>
 
-                <p className="mt-6 max-w-2xl text-lg leading-[1.75] text-ink-soft">
+                <p className="mt-6 max-w-2xl text-lg leading-[1.75] text-paper [text-shadow:0_1px_12px_rgba(0,0,0,0.45)]">
                   Nos reunimos en la Casa/Taller Patrimonial de
                   Agustín Abarca y en el Reino de Rosa Abarca.
                 </p>
+              </Reveal>
 
-                <div className="mt-8 flex flex-wrap items-center gap-5">
+              <Reveal delay={220}>
+                <div className="mt-10 flex flex-wrap items-center gap-5">
                   <Link
                     to="/funciones"
                     className="rounded-full bg-brick-deep px-7 py-3.5 font-bold tracking-wide text-paper transition-transform hover:-translate-y-0.5"
@@ -162,70 +117,78 @@ function Micrositio() {
                     href={contacto.instagram.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="link font-sans text-sm font-semibold uppercase tracking-[0.08em] text-brick-deep"
+                    className="link font-sans text-sm font-semibold uppercase tracking-[0.08em] text-paper"
                   >
                     {sitio.accionSecundaria} en{' '}
                     {contacto.instagram.usuario}
                   </a>
                 </div>
-              </div>
-            </Reveal>
+              </Reveal>
+            </div>
           </div>
         </section>
 
         {/* Qué hacemos */}
         <section
           id="que-hacemos"
-          className="mx-auto max-w-6xl px-5 py-20 sm:px-8 lg:py-28"
+          aria-labelledby="que-hacemos-titulo"
+          className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:py-24"
         >
-          <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
-            <div>
+          <div className="relative">
+            <div className="grid items-center gap-0 lg:grid-cols-[1.05fr_0.95fr]">
+              {/* Fotografía */}
               <Reveal>
-                <h2 className="text-[clamp(2rem,4.2vw,3rem)]">
-                  Qué hacemos
-                </h2>
-
-                <p className="mt-6 text-lg leading-relaxed text-ink-soft">
-                  {queHacemos.bajada}
-                </p>
+                <div className="relative z-10">
+                  <img
+                    src="/img/funcion-cine.jpg"
+                    alt="Asistentes viendo una película en una función del cineclub."
+                    loading="lazy"
+                    decoding="async"
+                    className="h-[340px] w-full object-cover sm:h-[470px] lg:h-[650px]"
+                  />
+                </div>
               </Reveal>
 
+              {/* Papel superpuesto */}
               <Reveal
-                delay={140}
-                className="mt-8"
+                delay={120}
+                className="relative z-20 -mt-10 lg:-ml-20 lg:mt-0"
               >
-                <figure className="aspect-3/2 overflow-hidden">
-                  <Foto
-                    archivo="funcion-cine.jpg"
-                    proporcion={0.667}
-                    sizes="(min-width: 1024px) 38vw, 100vw"
-                    alt="Personas reunidas durante una función del Cineclub Abarca."
-                  />
-                </figure>
+                <div className="analog-paper-card px-7 py-9 sm:px-9 sm:py-11 lg:px-12 lg:py-12">
+                  <p className="font-sans text-sm font-semibold uppercase tracking-[0.1em] text-brick-deep">
+                    Cine, conversación y comunidad
+                  </p>
+
+                  <h2
+                    id="que-hacemos-titulo"
+                    className="mt-4 text-[clamp(2.6rem,5vw,4.2rem)] leading-[1.05] text-ink"
+                  >
+                    Qué hacemos
+                  </h2>
+
+                  <p className="mt-6 max-w-2xl text-lg leading-[1.8] text-ink-soft">
+                    {queHacemos.bajada}
+                  </p>
+
+                  <div className="mt-8 border-t border-ink/20">
+                    {queHacemos.bloques.map((bloque) => (
+                      <div
+                        key={bloque.titulo}
+                        className="border-b border-ink/20 py-6 last:border-b-0"
+                      >
+                        <h3 className="text-[clamp(1.5rem,2.5vw,2rem)] leading-[1.2] text-ink">
+                          {bloque.titulo}
+                        </h3>
+
+                        <p className="mt-3 text-base leading-[1.75] text-ink-soft">
+                          {bloque.texto}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </Reveal>
             </div>
-
-            <ul className="grid gap-0 self-start border-t border-ink/20">
-              {queHacemos.bloques.map(
-                (bloque, i) => (
-                  <Reveal
-                    as="li"
-                    key={bloque.titulo}
-                    delay={i * 90}
-                  >
-                    <div className="border-b border-ink/20 py-7">
-                      <h3 className="text-2xl leading-[1.18]">
-                        {bloque.titulo}
-                      </h3>
-
-                      <p className="mt-3 text-base leading-[1.75] text-ink-soft">
-                        {bloque.texto}
-                      </p>
-                    </div>
-                  </Reveal>
-                ),
-              )}
-            </ul>
           </div>
         </section>
 
@@ -241,7 +204,7 @@ function Micrositio() {
                   Programación
                 </h2>
 
-                <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-soft">
+                <p className="mt-5 max-w-2xl text-lg leading-[1.75] text-ink-soft">
                   Conoce nuestras funciones y actividades más
                   recientes.
                 </p>
@@ -273,7 +236,7 @@ function Micrositio() {
             ) : (
               <Reveal delay={120}>
                 <div className="mt-10 border-y border-ink/20 py-8">
-                  <p className="max-w-2xl text-ink-soft">
+                  <p className="max-w-2xl text-lg leading-[1.75] text-ink-soft">
                     No hay funciones publicadas todavía.
                   </p>
 
@@ -301,7 +264,7 @@ function Micrositio() {
                   {visitar.titulo}
                 </h2>
 
-                <p className="mt-5 text-lg leading-relaxed text-ink-soft">
+                <p className="mt-5 text-lg leading-[1.75] text-ink-soft">
                   {visitar.bajada}
                 </p>
               </div>
@@ -351,7 +314,7 @@ function Micrositio() {
                 {contacto.titulo}
               </h2>
 
-              <p className="mt-5 max-w-lg text-lg leading-relaxed text-ink-soft">
+              <p className="mt-5 max-w-lg text-lg leading-[1.75] text-ink-soft">
                 {contacto.bajada}
               </p>
             </Reveal>
