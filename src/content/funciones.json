@@ -14,5 +14,22 @@
     "cuposMaximos": 5,
     "cuposDisponibles": 0,
     "estado": "agotados"
+  },
+  {
+    "slug": "la-coleccion-juan-marin",
+    "titulo": "Week - End",
+    "ciclo": "La Colección x Juan Marín",
+    "fecha": "2026-10-23",
+    "hora": "20:00",
+    "lugar": "Hamburgo 36, Ñuñoa",
+    "descripcion": "Week- End",
+    "pelicula": "Week- End",
+    "obra": "-",
+    "invitados": [
+      "Juan Marín (@sinelfilo)"
+    ],
+    "cuposMaximos": 15,
+    "cuposDisponibles": 15,
+    "estado": "cerradas"
   }
 ]
