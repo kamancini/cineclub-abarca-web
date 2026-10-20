@@ -18,19 +18,22 @@
   },
   {
     "slug": "la-coleccion-juan-marin",
-    "titulo": "Por definir",
-    "ciclo": "Por definir",
+    "titulo": "Week - End",
+    "ciclo": "La Colección",
     "fecha": "2026-10-23",
     "hora": "20:00",
     "lugar": "Hamburgo 36, Ñuñoa",
-    "descripcion": "TBA",
-    "pelicula": "TBA",
+    "descripcion": "Un fin de semana en el campo, tacos interminables, revolución y hasta canibalismo. Nuestra próxima función de 𝓛𝓪 𝓒𝓸𝓵𝓮𝓬𝓬𝓲ó𝓷 promete un viaje bastante accidentado 🎞️\n\nEste mes nos acompaña Juan Marín (@sinelfilo), periodista y crítico de cine, columnista de El Mostrador y Culturizarte, quien nos invitó a descubrir cuatro joyas de su selección cinéfila",
+    "pelicula": "Week - End",
     "obra": "-",
+    "imagen": "/img/week-end.jpg",
     "invitados": [
-      "TBA"
+      "Juan Marín (@sinelfilo)"
     ],
+    "informacionAdicional": "Veremos Week-End (1967), de Jean-Luc Godard, una delirante sátira sobre la sociedad burguesa y el consumismo, cargada de surrealismo, humor negro y crítica política.\n\nComo ya es tradición, los invitamos a traer algo rico para compartir. 🇫🇷🥖 Esta vez, la inspiración es la comida francesa: baguettes, camembert, queso azul, vino tinto… ¡todo lo que se les ocurra!\n\n✍️ Cupos limitados - inscripciones en el link de la bio\n📍 Hamburgo 36, Ñuñoa\n🕗 Viernes 23 de octubre · 20:00 hrs\n",
+    "formularioUrl": "forms.gle/2YjmUKF8dg1UmhBW9",
     "cuposMaximos": 15,
-    "cuposDisponibles": 15,
-    "estado": "cerradas"
+    "cuposDisponibles": 0,
+    "estado": "agotados"
   }
 ]
