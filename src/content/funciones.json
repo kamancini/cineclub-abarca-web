@@ -35,5 +35,24 @@
     "cuposMaximos": 15,
     "cuposDisponibles": 0,
     "estado": "agotados"
+  },
+  {
+    "slug": "el-cielo-sobre-las-nubes",
+    "titulo": "El cielo sobre las nubes",
+    "ciclo": "Cineclub de Lectura",
+    "fecha": "2026-11-28",
+    "hora": "15:00",
+    "lugar": "Inquieta Librería",
+    "descripcion": "📚 ¡Este noviembre seguimos el camino amarillo y nos vamos a Oz!\n\nEn una nueva sesión de nuestro Cineclub de Lectura veremos la maravilla Technicolor de “El mago de Oz” (1939), de Victor Fleming, y leeremos la novela “El cielo sobre las nubes”, de María José Navia (@emejotanavia )\n\n💚 Y tenemos una invitada especial: ¡la propia María José Navia nos acompañará para conversar sobre su novela y su relación con el mundo de Oz!\n\nEsta vez nos reuniremos en @lainquietalibreria, que nos abre sus puertas para compartir una tarde de cine, libros y conversación.",
+    "pelicula": "El Mago de Oz",
+    "obra": "El cielo sobre las nubes",
+    "imagen": "/img/club-de-lectura.png",
+    "invitados": [
+      "María José Navia"
+    ],
+    "formularioUrl": "https://tr.ee/MwtS2NvUUO",
+    "cuposMaximos": 10,
+    "cuposDisponibles": 6,
+    "estado": "auto"
   }
 ]
